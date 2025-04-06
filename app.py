@@ -313,6 +313,7 @@ CMS_TEMPLATE = """
 
                 {% if item.field_type == 'media' and item.link %}
                     <div class="mt-3">
+                        <p><strong>Title:</strong> {{ item.link }}</p>
                         <a href="{{ item.link }}" class="btn btn-success" target="_blank">Link to Published Article</a>
                     </div>
                 {% endif %}
@@ -456,7 +457,6 @@ def create_resource():
         # Only process link if it exists in the data
         try:
             link = data.get('link')
-            print("Link :",link,"\n\n\n\n")
         except:
             link = None
 
