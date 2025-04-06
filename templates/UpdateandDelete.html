@@ -118,11 +118,6 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Color</label>
-                            <input type="text" id="editColor" class="form-control">
-                        </div>
-
-                        <div class="mb-3">
                             <label class="form-label">Column Span</label>
                             <input type="number" id="editColSpan" class="form-control">
                         </div>
@@ -196,7 +191,6 @@
                     const safePostSummary = escapeHtml(resource.post_summary || '');
                     const safeMainImage = escapeHtml(resource.main_image || '');
                     const safeThumbnailImage = escapeHtml(resource.thumbnail_image || '');
-                    const safeColor = escapeHtml(resource.color || '');
                     const safeTopic = escapeHtml(resource.topic || '');
                     const safeFieldType = escapeHtml(resource.field_type || '');
                     const safeCmsLink = escapeHtml(resource.cms_link || '');
@@ -213,7 +207,7 @@
                     row.innerHTML = `
                         <td>${resource.name || 'N/A'}</td>
                         <td>
-                            <button class="btn btn-warning btn-sm" onclick="editResource(${resource.id}, '${safeName}', '${safeSlug}', '${safePostBody}', '${safePostSummary}', '${safeMainImage}', '${safeThumbnailImage}', ${resource.featured || false}, '${safeColor}', ${resource.col_span || 1}, '${safeTopic}', '${safeFieldType}', '${safeCmsLink}', '${safeLink}', ${hasReportFile}, '${safeReportFileName}')">Edit</button>
+                            <button class="btn btn-warning btn-sm" onclick="editResource(${resource.id}, '${safeName}', '${safeSlug}', '${safePostBody}', '${safePostSummary}', '${safeMainImage}', '${safeThumbnailImage}', ${resource.featured || false}, ${resource.col_span || 1}, '${safeTopic}', '${safeFieldType}', '${safeCmsLink}', '${safeLink}', ${hasReportFile}, '${safeReportFileName}')">Edit</button>
                             <button class="btn btn-danger btn-sm" onclick="deleteResource('${safeName}')">Delete</button>
                         </td>
                     `;
@@ -254,7 +248,7 @@
             }
         }
 
-        function editResource(id, name, slug, post_body, post_summary, main_image, thumbnail_image, featured, color, col_span, topic, field_type, cms_link, link, hasReportFile, reportFileName) {
+        function editResource(id, name, slug, post_body, post_summary, main_image, thumbnail_image, featured, col_span, topic, field_type, cms_link, link, hasReportFile, reportFileName) {
             document.getElementById('editId').value = id;
             document.getElementById('editName').value = decodeHtml(name) || '';
             document.getElementById('editSlug').value = decodeHtml(slug) || '';
@@ -263,7 +257,6 @@
             document.getElementById('editMainImage').value = decodeHtml(main_image) || '';
             document.getElementById('editThumbnailImage').value = decodeHtml(thumbnail_image) || '';
             document.getElementById('editFeatured').checked = featured || false;
-            document.getElementById('editColor').value = decodeHtml(color) || '';
             document.getElementById('editColSpan').value = col_span || 1;
             document.getElementById('editTopic').value = decodeHtml(topic) || '';
             document.getElementById('editFieldType').value = decodeHtml(field_type) || 'diary';
@@ -340,7 +333,6 @@
                 main_image: document.getElementById('editMainImage').value,
                 thumbnail_image: document.getElementById('editThumbnailImage').value,
                 featured: document.getElementById('editFeatured').checked,
-                color: document.getElementById('editColor').value,
                 col_span: document.getElementById('editColSpan').value,
                 topic: document.getElementById('editTopic').value,
                 field_type: fieldType,
