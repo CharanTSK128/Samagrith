@@ -318,7 +318,6 @@ CMS_TEMPLATE = """
 
                 {% if item.field_type == 'media' and item.link %}
                     <div class="mt-3">
-                        <p><strong>Title:</strong> {{ item.link }}</p>
                         {% set fixed_link = item.link if item.link.startswith('http') else 'https://' + item.link %}
                         <a href="{{ fixed_link }}" class="btn btn-success" target="_blank">Link to Published Article</a>
                     </div>
