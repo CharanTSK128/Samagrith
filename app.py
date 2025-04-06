@@ -470,7 +470,6 @@ def create_resource():
             main_image=main_image_b64,
             thumbnail_image=thumbnail_image_b64,
             featured=data.get('featured', False),
-            color=data.get('color'),
             col_span=data.get('col_span', 1),
             topic=data.get('topic'),
             field_type=field_type,
