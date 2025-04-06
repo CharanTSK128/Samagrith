@@ -306,10 +306,8 @@ CMS_TEMPLATE = """
 
                 {% if item.field_type == 'reports' and item.report_file %}
                     <div class="mt-3">
-                        <h4>Report File</h4>
                         <div id="pdf-viewer-container" class="pdf-viewer-container"></div>
                         <a href="{{ item.report_file }}" class="btn btn-success mt-3" download="report.pdf">Download Report</a>
-                        <button class="btn btn-primary mt-3" onclick="printPage()">Print Report</button>
                     </div>
                 {% endif %}
 
@@ -332,10 +330,6 @@ CMS_TEMPLATE = """
     </div>
 
     <script>
-        function printPage() {
-            window.print();
-        }
-
         async function renderPDF(base64Data) {
             const pdfData = atob(base64Data.split(',')[1]);
             const pdfjsLib = window['pdfjs-dist/build/pdf'];
