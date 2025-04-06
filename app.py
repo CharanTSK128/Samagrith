@@ -482,7 +482,7 @@ def create_resource():
             report_file=report_file_data  # Store the report file data
         )
 
-        new_resource.cms_link = "https://samagrithtsk.onrender.com/" + new_resource.generate_cms_link()
+        new_resource.cms_link = "https://samagrith.onrender.com" + new_resource.generate_cms_link()
         db.session.add(new_resource)
         db.session.commit()
 
@@ -505,7 +505,7 @@ def create_job():
 
         db.session.add(new_job)
         db.session.commit()
-        new_job.cms_link = "https://samagrithtsk.onrender.com/" + new_job.generate_cms_link()
+        new_job.cms_link = "https://samagrith.onrender.com" + new_job.generate_cms_link()
         db.session.commit()
         return jsonify({'message': 'Job created successfully', 'job': new_job.to_dict()}), 201
     except Exception as e:
@@ -583,7 +583,7 @@ def update_resource(id):
                 setattr(resource, key, value)
 
         # Regenerate CMS link if needed
-        resource.cms_link = "https://samagrithtsk.onrender.com/" + resource.generate_cms_link()
+        resource.cms_link = "https://samagrith.onrender.com" + resource.generate_cms_link()
 
         db.session.commit()
         return jsonify({'message': 'Resource updated successfully', 'resource': resource.to_dict()}), 200
