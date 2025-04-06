@@ -290,9 +290,14 @@ CMS_TEMPLATE = """
                 <div class="metadata">
                     <p><strong>Topic:</strong> {{ item.topic }}</p>
                     <p><strong>Created At:</strong> {{ item.created_at.strftime('%d/%m/%Y') }}</p>
-                    <p><strong>Field Type:</strong> {{ item.field_type }}</p>
+                    <p><strong>Field Type:</strong> 
+                      {% if item.field_type == 'diary' %}
+                        Field Diary
+                      {% else %}
+                        {{ item.field_type }}
+                      {% endif %}
+                    </p>
                 </div>
-
                 <div class="image-container">
                     {% if item.main_image %}
                         <img src="data:image/png;base64,{{ item.main_image }}" alt="Main Image" class="img-fluid">
