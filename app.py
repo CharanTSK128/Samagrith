@@ -456,6 +456,7 @@ def create_resource():
         # Only process link if it exists in the data
         try:
             link = data.get('link')
+            print("Link :",link,"\n\n\n\n")
         except:
             link = None
 
