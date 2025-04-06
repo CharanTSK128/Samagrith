@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Resource</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            padding-top: 100px;
+        }
+
+        img {
+            margin-left: 12px;
+        }
+
+        .navbar {
+            background-color: #005c38;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        .navbar .logo img {
+            width: 80px;
+            height: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <div class="logo d-flex align-items-center">
+                <img src="./static/images/samagrith-logo-in-nav-bar-p-500.png" width="120"
+                    sizes="(max-width: 479px) 100vw, 90px"
+                    srcset="./static/images/samagrith-logo-in-nav-bar-p-500.png 500w, ./static/images/samagrith-logo-in-nav-bar-p-500.png 1080w"
+                    alt="" class="logo-image">
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h2>Create Resource</h2><br>
+
+        <!-- Alert Container -->
+        <div id="alert-container" class="alert-container"></div>
+
+        <form id="resource-form" method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="slug">Slug</label>
+                    <input type="text" placeholder="Please don't give any space" id="slug" name="slug" class="form-control" required>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <label for="post_summary">Post Summary</label>
+                    <textarea id="post_summary" name="post_summary" class="form-control" rows="3"></textarea>
+                </div>
+                <div class="col-md-6">
+                    <label for="post_body">Post Body</label>
+                    <textarea id="post_body" name="post_body" class="form-control" rows="3"></textarea>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <label for="main_image">Main Image</label>
+                    <input type="file" id="main_image" name="main_image" class="form-control" accept="image/*" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="thumbnail_image">Thumbnail Image</label>
+                    <input type="file" id="thumbnail_image" name="thumbnail_image" class="form-control"
+                        accept="image/*">
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <label for="color">Color</label>
+                    <input type="text" id="color" name="color" class="form-control">
+                </div>
+            </div>
+
+            <div class="col-md-6 mt-3">
+                <label for="topic">Topic</label><br>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Select Topics
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="topic-options">
+                        <li>
+                            <label class="dropdown-item">
+                                <input type="checkbox" value="Monitoring & Evaluation"> Monitoring & Evaluation
+                            </label>
+                        </li>
+                        <li>
+                            <label class="dropdown-item">
+                                <input type="checkbox" value="Accounting & Legal Support"> Accounting & Legal Support
+                            </label>
+                        </li>
+                        <li>
+                            <label class="dropdown-item">
+                                <input type="checkbox" value="Fund Raising"> Fund Raising
+                            </label>
+                        </li>
+                        <li>
+                            <label class="dropdown-item">
+                                <input type="checkbox" value="Public Policy"> Public Policy
+                            </label>
+                        </li>
+                        <li>
+                            <label class="dropdown-item">
+                                <input type="checkbox" value="Research & Development"> Research & Development
+                            </label>
+                        </li>
+                        <li>
+                            <label class="dropdown-item">
+                                <input type="checkbox" value="Capacity Building"> Capacity Building
+                            </label>
+                        </li>
+                        <li>
+                            <label class="dropdown-item">
+                                <input type="checkbox" value="Community Engagement & Partnership"> Community Engagement &
+                                Partnership
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Dropdown for field_type -->
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <label for="field_type">Field Type</label>
+                    <select id="field_type" name="field_type" class="form-control" required
+                        onchange="toggleAdditionalFields()">
+                        <option value="diary">Diary</option>
+                        <option value="media">Media</option>
+                        <option value="reports">Reports</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mt-3" id="link_field_container" style="display: none;">
+                <div class="col-md-6">
+                    <label for="link">Link</label>
+                    <input type="url" id="link" name="link" class="form-control">
+                </div>
+            </div>
+
+            <div class="row mt-3" id="report_file_container" style="display: none;">
+                <div class="col-md-6">
+                    <label for="report_file">Report File</label>
+                    <input type="file" id="report_file" name="report_file" class="form-control"
+                        accept=".pdf,.doc,.docx,.xlsx,.ppt,.pptx">
+                    <small class="form-text text-muted">Upload report documents (PDF, Word, Excel, PowerPoint)</small>
+                </div>
+            </div>
+
+            <div class="mt-4 text-center">
+                <button type="button" class="btn btn-success" onclick="submitForm()">Create Resource</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function toggleAdditionalFields() {
+            const fieldType = document.getElementById('field_type').value;
+            const linkFieldContainer = document.getElementById('link_field_container');
+            const reportFileContainer = document.getElementById('report_file_container');
+
+            // Hide all first
+            linkFieldContainer.style.display = "none";
+            reportFileContainer.style.display = "none";
+
+            // Show appropriate fields based on selection
+            if (fieldType === "media") {
+                linkFieldContainer.style.display = "block";
+            } else if (fieldType === "reports") {
+                reportFileContainer.style.display = "block";
+            }
+        }
+
+        // Function to convert file to base64
+        function convertToBase64(file, callback) {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function () {
+                callback(reader.result);
+            };
+            reader.onerror = function (error) {
+                console.error('Error: ', error);
+            };
+        }
+
+        // Function to get selected values from checkboxes
+        function getSelectedValues() {
+            const checkboxes = document.querySelectorAll('#topic-options input[type="checkbox"]:checked');
+            return Array.from(checkboxes).map(cb => cb.value).join(' | ');
+        }
+
+        // Function to submit the form
+        function submitForm() {
+            const form = document.getElementById('resource-form');
+            const fieldType = document.getElementById('field_type').value;
+            const mainImage = document.getElementById('main_image').files[0];
+            const thumbnailImage = document.getElementById('thumbnail_image').files[0];
+            const reportFile = fieldType === "reports" ? document.getElementById('report_file').files[0] : null;
+
+            if (!mainImage) {
+                alert('Main image is required');
+                return;
+            }
+
+            if (fieldType === "reports" && !reportFile) {
+                alert('Please upload a report file');
+                return;
+            }
+
+            const finalData = {};
+
+            const formData = new FormData(form);
+            for (let [key, value] of formData.entries()) {
+                if (key !== 'main_image' && key !== 'thumbnail_image' && key !== 'report_file') {
+                    finalData[key] = value;
+                }
+            }
+
+            // Add the | separated topics to final data
+            finalData['topic'] = getSelectedValues();
+
+            convertToBase64(mainImage, function (mainImageBase64) {
+                finalData['main_image'] = mainImageBase64;
+
+                if (thumbnailImage) {
+                    convertToBase64(thumbnailImage, function (thumbnailBase64) {
+                        finalData['thumbnail_image'] = thumbnailBase64;
+
+                        if (fieldType === "reports" && reportFile) {
+                            convertToBase64(reportFile, function (reportBase64) {
+                                finalData['report_file'] = reportBase64;
+                                sendRequest(finalData);
+                            });
+                        } else {
+                            sendRequest(finalData);
+                        }
+                    });
+                } else {
+                    if (fieldType === "reports" && reportFile) {
+                        convertToBase64(reportFile, function (reportBase64) {
+                            finalData['report_file'] = reportBase64;
+                            sendRequest(finalData);
+                        });
+                    } else {
+                        sendRequest(finalData);
+                    }
+                }
+            });
+        }
+
+        // Function to send the request
+        function sendRequest(data) {
+            fetch('https://samagrithtsk.onrender.com/api/resources', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message === 'Resource created successfully') {
+                        showAlert('Resource created successfully!', 'success');
+                        document.getElementById('resource-form').reset();
+                        document.getElementById('link_field_container').style.display = "none";
+                        document.getElementById('report_file_container').style.display = "none";
+                    } else {
+                        alert('Error: ' + data.error);
+                    }
+                })
+                .catch(error => {
+                    alert('Error: ' + error.message);
+                });
+        }
+
+        function showAlert(message, type) {
+            const alertContainer = document.getElementById('alert-container');
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
+            alertDiv.role = 'alert';
+            alertDiv.innerHTML = `
+    ${message}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+`;
+
+            alertContainer.innerHTML = '';
+            alertContainer.appendChild(alertDiv);
+
+            setTimeout(() => {
+                alertDiv.classList.remove('show');
+                alertDiv.classList.add('fade');
+                setTimeout(() => alertDiv.remove(), 500);
+            }, 5000);
+        }
+
+        // Initialize the form display
+        document.addEventListener('DOMContentLoaded', function () {
+            toggleAdditionalFields();
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

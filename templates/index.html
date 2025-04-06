@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            padding-top: 100px;
+        }
+
+        .dashboard-container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .btn-green {
+            background-color: #005c38;
+            color: white;
+            border: 2px solid #00472a;
+            width: 100%;
+        }
+
+        .btn-white {
+            background-color: white;
+            color: black;
+            border: 2px solid black;
+            width: 100%;
+        }
+
+        .btn-green:hover {
+            background-color: white;
+            color: #00472a;
+            border: 1px solid #00472a;
+        }
+
+        .btn-white:hover {
+            background-color: #e9ecef;
+        }
+
+        .navbar {
+            background-color: #005c38;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 10px 20px;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        .navbar .logo img {
+            width: 80px;
+            height: 80px;
+        }
+
+        img {
+            margin-left: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <div class="logo d-flex align-items-center">
+                <img src="./static/images/samagrith-logo-in-nav-bar-p-500.png" width="120" alt="Logo"
+                    class="logo-image">
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <h2 class="mb-4">Admin Dashboard</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <a href="/createresource" class="btn btn-green mb-3">Create Resource</a>
+                <a href="/viewresource" class="btn btn-white">View Resources</a>
+            </div>
+            <div class="col-md-6">
+                <a href="/createjob" class="btn btn-green mb-3">Create Job</a>
+                <a href="/updatejob" class="btn btn-white">Update Job</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
