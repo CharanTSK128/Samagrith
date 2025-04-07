@@ -445,7 +445,9 @@ def create_resource():
         main_image_b64 = data.get('main_image')
         thumbnail_image_b64 = data.get('thumbnail_image')
         report_file_b64 = data.get('report_file')
-        
+
+        print(main_image_b64[:10])
+        print(thumbnail_image_b64[:10])
         # Debug log to check report file
         print("Report file present:", report_file_b64 is not None)
         
