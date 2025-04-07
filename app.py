@@ -290,11 +290,11 @@ CMS_TEMPLATE = """
                 <div class="metadata">
                     <p><strong>Topic:</strong> {{ item.topic }}</p>
                     <p><strong>Created At:</strong> {{ item.created_at.strftime('%d/%m/%Y') }}</p>
-                    <p><strong>Field Type:</strong> 
+                    <p><strong>Type:</strong> 
                       {% if item.field_type == 'diary' %}
                         Field Diary
                       {% else %}
-                        {{ item.field_type }}
+                        {{ item.field_type.capitalize() }}
                       {% endif %}
                     </p>
                 </div>
