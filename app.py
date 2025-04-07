@@ -304,7 +304,7 @@ CMS_TEMPLATE = """
                           src="data:image/png;base64,{{ item.main_image }}" 
                           alt="Main Image" 
                           class="img-fluid" 
-                          style="max-width: 1000px; width: 300px; height: auto; object-fit: cover; border-radius: 10px;"
+                          style="max-width: 1000px; width: 500px; height: auto; object-fit: cover; border-radius: 10px;"
                         >
                     {% endif %}
                 </div>
