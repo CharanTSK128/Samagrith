@@ -300,7 +300,7 @@ CMS_TEMPLATE = """
                 </div>
                 <div class="image-container">
                     {% if item.main_image %}
-                        <img src="data:image/png;base64,{{ item.main_image }}" alt="Main Image" class="img-fluid" style="max-width: 200px; height: auto;">
+                        <img src="data:image/png;base64,{{ item.main_image }}" alt="Main Image" class="img-fluid" style="max-width: 500px; height: auto;">
                     {% endif %}
                 </div>
 
