@@ -15,7 +15,7 @@ import re
 app = Flask(__name__)
 app.secret_key = os.urandom(24).hex()
 CORS(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://samagrithdb_user:U11CWC17BRTNJnV3m0hgIjVE2MdXGYBP@dpg-cvr50e24d50c738dcmag-a.oregon-postgres.render.com/samagrithdb'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
